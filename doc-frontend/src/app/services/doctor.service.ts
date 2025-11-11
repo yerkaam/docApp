@@ -1,0 +1,47 @@
+import {inject, Injectable, signal} from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import {Observable, tap} from 'rxjs';
+import {City} from '../interfaces/city.interface';
+import {Doctor} from '../interfaces/doctor.interface';
+import {routes} from '../app.routes';
+import {Router} from '@angular/router';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DoctorService {
+  private apiUrl = 'http://localhost:3000/api';
+  doctor = signal<Doctor | null>(null);
+
+  constructor(private http: HttpClient) {
+    if (localStorage.getItem('doctor')) {
+    }
+  }
+  router = inject(Router)
+  getCities(): Observable<City[]> {
+    return this.http.get<City[]>(`${this.apiUrl}/cities`);
+  }
+  getAllDoctors(){
+    return this.http.get<Doctor[]>(`${this.apiUrl}/doctors`);
+  }
+  getDoctors(cityId?: string, specialty?: string): Observable<Doctor[]> {
+    let params = new HttpParams();
+    if (cityId) params = params.set('cityId', cityId);
+    if (specialty) params = params.set('specialty', specialty);
+
+    console.log('🔍 Отправляю запрос с параметрами:', params.toString());
+    return this.http.get<Doctor[]>('http://localhost:3000/api/doctors', { params });
+  }
+  toAppointment(id: string){
+    return this.http.get<Doctor>(`${this.apiUrl}/doctors/${id}`).pipe(
+      tap(res => {
+        console.log(res);
+        localStorage.removeItem('doctor');
+        localStorage.setItem('doctor', JSON.stringify(res));
+        this.doctor.set(JSON.parse(<string>localStorage.getItem('doctor')));
+        this.router.navigate(['/appointment']);
+      }))
+
+  }
+
+}

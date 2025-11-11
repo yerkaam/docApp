@@ -1,0 +1,71 @@
+.wrapper{
+  height: 450px;
+  background-color: #0f1243;
+  color: white;
+  background: url(https://www.booknmeet.com/img/hero_home_bg_1.svg) center bottom no-repeat #040744;
+  background-size: cover;
+}
+.home-part{
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 7% 0;
+}
+select{
+  padding-left:20px;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  color: #08399c;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+input{
+  padding-left:20px;
+  width: 100%;
+  height: 50px;
+  color: #08399c;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+input::placeholder{
+  color: #08399c;
+}
+.search-query{
+  display: flex;
+  padding: 15px 0;
+  gap: 15px;
+}
+button{
+  background-color: #00b8ff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.information-part{
+  width: 80%;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+.boxes{
+  margin-top: 50px;
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+.box{
+  width: 30%;
+}
+

@@ -1,0 +1,40 @@
+<div class="wrapper">
+<div class="payment-page">
+  <h3>Payment</h3>
+
+  <p><strong>Date:</strong> {{ date }} &nbsp; <strong>Time:</strong> {{ time }}</p>
+  <div class="divider">
+  </div>
+
+  <label>Choose payment method</label>
+  <div class="bank-options">
+    <label><input type="radio" name="method" [(ngModel)]="payment.method" value="kaspi"> Kaspi</label>
+    <label><input type="radio" name="method" [(ngModel)]="payment.method" value="halyk"> Halyk</label>
+    <label><input type="radio" name="method" [(ngModel)]="payment.method" value="forte"> Forte</label>
+    <label><input type="radio" name="method" [(ngModel)]="payment.method" value="other"> Другое</label>
+  </div>
+  <div class="divider">
+  </div>
+
+  <div class="form-row">
+    <label>Number of card or phone number</label>
+    <input class="input" [(ngModel)]="payment.account" placeholder="+7 700 000 0000 or 4276 xxxx xxxx xxxx" />
+  </div>
+
+  <div class="form-row">
+    <label>Name</label>
+    <input class="input" [(ngModel)]="payment.name" placeholder="Name and surname" />
+  </div>
+
+  <div class="form-row">
+    <label>Comment (not required):</label>
+    <input class="input" [(ngModel)]="payment.comment" placeholder="Comment" />
+  </div>
+  <div class="divider">
+  </div>
+  <div class="modal-actions">
+    <button class="pay-btn btn" (click)="confirmPayment()">Pay</button>
+    <button class="cancel-btn btn" routerLink="/appointment">Cancel</button>
+  </div>
+</div>
+</div>

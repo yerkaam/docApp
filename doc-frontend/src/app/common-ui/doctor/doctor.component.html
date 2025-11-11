@@ -1,0 +1,29 @@
+<script src="doctor.component.ts"></script>
+<script src="../../pages/search-page/search-page.component.ts"></script>
+<div class="doctor_img__info">
+  <img [src]="doctor.image">
+  <div class="doctor_info">
+    <p>{{doctor.specialty}}</p>
+    <h3>{{doctor.name}}</h3>
+  <div class="second-part__info">
+    <div>
+    <p>Experience: {{doctor.experience}} year</p>
+    <div class="stars">
+      Rating:
+      <ng-container *ngFor="let star of starsArray; let i = index">
+        <span class="star" [style.--fill]="getFillPercent(i)">★</span>
+      </ng-container>
+      <span class="rating-number">{{ doctor.rating }}</span>
+    </div>
+    <div class="time">
+      <p>Consultation time:</p>
+      <p>{{dayName}}: 09:30 AM-06:00 PM</p>
+    </div>
+    </div>
+    <div>
+      <button class="btn" (click)="onClick(doctor._id)">Book Now</button>
+    </div>
+</div>
+
+</div>
+</div>

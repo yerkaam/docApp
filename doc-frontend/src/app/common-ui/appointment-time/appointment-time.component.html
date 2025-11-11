@@ -1,0 +1,26 @@
+<div class="appointment-container">
+  <!-- Date bar -->
+  <div class="date-bar">
+    <button *ngFor="let day of days"
+            (click)="selectDate(day)"
+            [class.selected]="selectedDate === day">
+      {{ day | date: 'EEE, MMM d' }}
+    </button>
+  </div>
+
+
+  <div class="slots-container">
+    <h3>{{ selectedDate | date:'EEEE, MMM d' }}</h3>
+    <div class="slots">
+      <button *ngFor="let slot of slots"
+              (click)="openPaymentPage(slot)"
+              [disabled]="!slot.available"
+              [ngClass]="{'booked': !slot.available, 'available': slot.available}">
+        {{ slot.time }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Payment modal -->
+

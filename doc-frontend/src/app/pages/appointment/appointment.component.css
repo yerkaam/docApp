@@ -1,0 +1,113 @@
+.rating-number {
+  margin-left: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+.stars {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.star {
+  --fill: 0%;
+  display: inline-block;
+  position: relative;
+  color: #ccc;
+  width: 1.2em;
+}
+
+.star::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--fill);
+  overflow: hidden;
+  color: #ffc107;
+}
+.wrapper{
+  width: 80%;
+  display: block;
+  margin: 20px auto;
+}
+.appointment-page{
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  grid-gap: 30px;
+}
+.doctor{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.doc-avatar img{
+  width: 100px;
+}
+.doc-info{
+  text-align: center;
+  padding: 17px;
+}
+.doc-info h4{
+  color: #00b8ff;
+  font-size: 18px;
+
+}
+.doc-info span{
+  font-size: 14px;
+}
+.consultation{
+  border-radius: 3px;
+  line-height: normal;
+  color: #040744;
+  padding: 3px 10px;
+  font-size: 12px;
+  margin: 5px;
+}
+.doc-address{
+  width: 100%;
+  text-align: left;
+  border-top: 1px solid #ededed;
+  padding: 17px;
+  margin: 0 -25px 25px;
+}
+.doc-address span{
+  font-size: 12px;
+  color: #999;
+}
+.book-appointment{
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.book-appointment div{
+  padding: 10px;
+}
+.title{
+  text-align: center;
+  background-color: #0f1243;
+  color: white;
+  align-items: center;
+  border-radius: 10px 10px 0 0;
+}
+.title h4{
+  font-weight: lighter;
+  margin: 0;
+}
+.h3{
+  text-align: center;
+
+}
+.h3 h3{
+  font-size: 20px;
+  font-weight: 300;
+  color: #5050d7;
+}
+
+

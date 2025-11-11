@@ -1,0 +1,27 @@
+.logo{
+  width: 150px;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.nav-btn{
+  margin-right: 10px;
+  border: none;
+}
+.wrapper{
+  display: block;
+  width: 80%;
+  margin: auto;
+}
+.white{
+  background-color: white;
+}
+a{
+  text-decoration: none;
+}
+
+
+

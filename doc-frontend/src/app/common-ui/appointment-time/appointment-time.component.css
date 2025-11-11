@@ -1,0 +1,42 @@
+.date-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding: 5px 0;
+}
+
+.date-bar button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.date-bar button.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.slots button.booked {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.slots button.available {
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+.slots button {
+  border: 1px solid white;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+.slots{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+

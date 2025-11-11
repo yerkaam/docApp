@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <div class="register-form">
+    <h1>Create Account</h1>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <input type="text" placeholder="Name" formControlName="name">
+  <input type="email" placeholder="Email" formControlName="email">
+  <input type="password" placeholder="Password" formControlName="password">
+  <button type="submit" [disabled]="form.invalid">Зарегистрироваться</button>
+</form>
+    <p>Already have an account? <a [routerLink]="'/login'">Login here</a></p>
+  </div>
+</div>

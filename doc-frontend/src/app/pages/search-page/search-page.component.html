@@ -1,0 +1,24 @@
+<script src="../../common-ui/doctor/doctor.component.ts"></script>
+<div class="search-page">
+  <div>
+    <div class="search-query">
+      <select [(ngModel)]="selectedCity">
+        <option value="">Выберите город</option>
+        @for (city of cities$ | async; track city._id) {
+          <option [value]="city._id">{{ city.name }}</option>
+        }
+      </select>
+      <input
+        type="text"
+        [(ngModel)]="specialty"
+        placeholder="Введите специализацию"
+      />
+      <button (click)="searchDoctors()">Найти</button>
+    </div>
+    <div class="doctors">
+    @for (doctor of doctors(); track doctor._id){
+      <app-doctor [doctor]="doctor"></app-doctor>
+    }
+    </div>
+  </div>
+</div>

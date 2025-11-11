@@ -1,0 +1,45 @@
+.stars {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.star {
+  --fill: 0%;
+  display: inline-block;
+  position: relative;
+  color: #ccc;
+  width: 1.2em;
+}
+
+.star::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--fill);
+  overflow: hidden;
+  color: #ffc107;
+}
+
+.rating-number {
+  margin-left: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+.doctor_img__info{
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+}
+.second-part__info{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #6b6b6b;
+  font-size: 14px;
+}

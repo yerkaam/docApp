@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="../footer/footer.component.css">
+<div class="white">
+<div class="wrapper">
+<div class="header">
+  <img class="logo" src="/assets/imgs/logo.png">
+  <div class="header-info">
+    <a class="btn nav-btn" [routerLink]="'home'">Home</a>
+    <a class="btn nav-btn">Appointments</a>
+
+    @if(!authService.me()){
+      <a class="btn nav-btn" [routerLink]="'login'">Sign in</a>
+      <a class="btn nav-btn" [routerLink]="'register'">Sign up</a>
+    }
+
+    @if(authService.me()){
+      <a class="btn nav-btn" [routerLink]="'profile'">Profile</a>
+      <button class="btn nav-btn" (click)="logout()">Logout</button>
+    }
+  </div>
+</div>
+</div>
+</div>

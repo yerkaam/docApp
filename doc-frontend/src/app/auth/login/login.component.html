@@ -1,0 +1,13 @@
+<script src="../register/register.component.ts"></script>
+<div class="wrapper">
+<div class="login-form">
+  <h1>SIGN IN</h1>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <input type="email" formControlName="email" placeholder="Email">
+  <input type="password" formControlName="password" placeholder="Password">
+  <a class="forgot-password" [routerLink]="">Forgot password?</a>
+  <button type="submit">Login</button>
+</form>
+  <p>Not a member? <a [routerLink]="'register'">Sign up now</a></p>
+</div>
+</div>

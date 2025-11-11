@@ -1,0 +1,51 @@
+<div class="main">
+<div class="wrapper">
+<div class="home-part">
+  <h1>Book N Meet a Doctor!</h1>
+  <p>Kazakhstan's best online appointment scheduling platform</p>
+
+  <div>
+    <div class="search-query">
+      <select [(ngModel)]="selectedCity">
+        <option value="">Выберите город</option>
+        @for (city of cities$ | async; track city._id) {
+          <option [value]="city._id">{{ city.name }}</option>
+        }
+      </select>
+
+      <input
+        type="text"
+        [(ngModel)]="specialty"
+        placeholder="Введите специализацию"
+      />
+      <button (click)="searchDoctors()">Найти</button>
+    </div>
+  </div>
+</div>
+</div>
+<div class="information-part">
+  <h3>
+    ONLINE MOBILE APPOINTMENT SCHEDULING PLATFORM
+  </h3>
+  <p>Online Appointment, Phone-in Appointment, Walk-in Appointment with Token</p>
+  <div class="boxes">
+  @for (box of box_feat__info; track box.label) {
+    <app-box-feat [information]="box"></app-box-feat>
+  }
+  </div>
+  </div>
+  <div class="information-part">
+    <h3>
+      WHY CHOOSE DocApp
+    </h3>
+    <p>Online Appointment, Phone-in Appointment, Walk-in Appointment with Token</p>
+    <div class="boxes">
+      @for (box of box_feat__info2; track box.label) {
+        <div class="box">
+        <app-box-feat [information]="box"></app-box-feat>
+          </div>
+      }
+    </div>
+</div>
+</div>
+

@@ -1,0 +1,41 @@
+<script src="appointment.component.ts"></script>
+<div class="wrapper">
+  <div class="appointment-page">
+    <div class="doctor">
+      <div class="doc-avatar">
+        <img [src]="doctor()?.image">
+      </div>
+      <div class="doc-info">
+        <div>
+        <span>{{doctor()?.specialty}}</span>
+        <h4>{{doctor()?.name}}</h4>
+        </div>
+        <div class="stars">
+          <ng-container *ngFor="let star of starsArray; let i = index">
+            <span class="star" [style.--fill]="getFillPercent(i)">★</span>
+          </ng-container>
+          <span class="rating-number">{{ doctor()!.rating }}</span>
+        </div>
+      </div>
+      <div class="consultation">
+        <i class="fa fa-stethoscope"></i>
+        Clinic Consultation: 5000 KZT
+      </div>
+      <div class="doc-address">
+        <p>Address</p>
+        <span>Alamis Clinic <br>Zhazilbek str, 20/1 <br>050043, Almaty, Auezov</span>
+      </div>
+    </div>
+    <div class="book-appointment">
+      <div class="title">
+      <h4>Book confirmed appointment</h4>
+      </div>
+      <div class="h3">
+        <h3>Clinic/hospital consultation available</h3>
+      </div>
+      <div>
+      <app-appointment-time></app-appointment-time>
+      </div>
+    </div>
+  </div>
+</div>
