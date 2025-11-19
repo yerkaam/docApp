@@ -7,9 +7,8 @@ const doctorSchema = new mongoose.Schema({
     experience: { type: Number, required: true },
     cityId: { type: Number, required: true }, // связь с id города
     rating: { type: Number, default: 0 },
-    availableTimes: { type: [String], default: [] },
     image: { type: String },
-    about: { type: String }
+    email: { type: String },
 });
 
 export default mongoose.model("Doctor", doctorSchema);

@@ -29,6 +29,20 @@ export const createAppointment = async (req, res) => {
 
 
 // Получение appointment с фильтром по доктору и дате
+export const getAppointmentByUserId = async (req, res) => {
+    try {
+        const { userId } = req.params; // ✅ берем из params
+        const appointments = await Appointment.find({ userId });
+
+        console.log('Appointments for user:', userId, appointments);
+
+        res.status(200).json(appointments); // ✅ обязательно вернуть клиенту
+    } catch (error) {
+        console.error("Ошибка при получении записей:", error);
+        res.status(500).json({ message: "Error fetching appointments" });
+    }
+};
+
 export const getAppointments = async (req, res) => {
     try {
         const { doctor, date } = req.query;
@@ -36,8 +50,6 @@ export const getAppointments = async (req, res) => {
         if (!doctor || !date) {
             return res.status(400).json({ message: "Doctor and date are required" });
         }
-
-        // Преобразуем дату из строки в объект Date
         const startOfDay = new Date(date);
         startOfDay.setHours(0, 0, 0, 0);
 
@@ -50,6 +62,23 @@ export const getAppointments = async (req, res) => {
             date: { $gte: startOfDay, $lte: endOfDay }
         }).sort({ time: 1 });
 
+        console.log("📅 Найдено записей:", appointments.length);
+        res.json(appointments);
+    } catch (error) {
+        console.error("Ошибка при получении записей:", error);
+        res.status(500).json({ message: "Error fetching appointments" });
+    }
+};
+export const getAppointmentsByDoctorID = async (req, res) => {
+    try {
+        const { doctorId } = req.query;
+
+        if (!doctorId) {
+            return res.status(400).json({ message: "Doctor is required" });
+        }
+        const appointments = await Appointment.find({
+            doctorId: doctorId,
+        }).sort({ time: 1 });
         console.log("📅 Найдено записей:", appointments.length);
         res.json(appointments);
     } catch (error) {
