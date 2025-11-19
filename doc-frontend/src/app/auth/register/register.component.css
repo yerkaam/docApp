@@ -10,10 +10,6 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/assets/imgs/background.jpg");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.8; /* ← регулируй прозрачность */
   z-index: -1;
 }
 
@@ -31,7 +27,6 @@
   margin-bottom: 10px;
   border: 1px solid #969494;
   border-radius: 15px;
-
 }
 button{
   width: 100%;
@@ -50,5 +45,4 @@ button{
   background-color: white;
   padding: 100px 30px;
   border-radius: 15px;
-  opacity: 0.9;
 }

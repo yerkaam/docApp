@@ -7,20 +7,12 @@ import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-layout',
-  imports: [
-    ProfileComponent,
-    HeaderPartComponent,
-    HomeComponent,
-    RouterOutlet
-  ],
+    imports: [
+        RouterOutlet,
+        HeaderPartComponent
+    ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
-authService = inject(AuthService)
-  ngOnInit() {
-    this.authService.getProfile().subscribe(value => {
-      console.log(value)
-    })
-  }
 }

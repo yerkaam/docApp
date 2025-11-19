@@ -1,0 +1,28 @@
+<div class="appointments-list">
+  @for (ap of appointments(); track ap._id) {
+    @let doctor = getDoctorById(ap.doctorId);
+
+    <div class="appointment-card">
+      <div class="appointment-header">
+        <h3>{{ doctor?.name || 'Неизвестный доктор' }}</h3>
+        <span class="specialty">{{ doctor?.specialty || '—' }}</span>
+      </div>
+
+      <div class="appointment-info">
+        <p><strong>Пациент:</strong> {{ me()!.name || '—' }}</p>
+        <p><strong>Email:</strong> {{ me()!.email || '—' }}</p>
+        <p><strong>Дата:</strong> {{ ap.date | date:'dd.MM.yyyy' }}</p>
+        <p><strong>Время:</strong> {{ ap.time }}</p>
+      </div>
+
+      <div class="appointment-footer">
+        <p class="payment">
+          💳 {{ ap.paymentInfo?.method || 'без оплаты' }}
+        </p>
+        <p class="created">
+          Создано: {{ ap.createdAt | date:'dd.MM.yyyy, HH:mm' }}
+        </p>
+      </div>
+    </div>
+  }
+</div>

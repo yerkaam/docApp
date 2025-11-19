@@ -1,0 +1,27 @@
+<div class="medical-card">
+  <h2>Medical Card</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <label>Height (cm):</label>
+      <input formControlName="height" type="number">
+    </div>
+    <div class="form-row">
+      <label>Weight (kg):</label>
+      <input formControlName="weight" type="number">
+    </div>
+    <div class="form-row">
+      <label>Blood Type:</label>
+      <input formControlName="bloodType" type="text">
+    </div>
+    <div class="form-row">
+      <label>Allergies:</label>
+      <input formControlName="allergies" type="text">
+    </div>
+    <div class="form-row">
+      <label>Chronic Diseases:</label>
+      <input formControlName="chronicDiseases" type="text">
+    </div>
+    <button type="submit">Save</button>
+  </form>
+</div>

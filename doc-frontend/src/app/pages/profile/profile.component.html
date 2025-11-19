@@ -1,5 +1,18 @@
-<button (click)="onClick()">logout</button>
-  <form [formGroup]="form">
-<input formControlName="email" >
-<input formControlName="name">
-  </form>
+<div class="profile">
+  <div class="profile-information">
+    <img src="/assets/imgs/avatar.png">
+    <form [formGroup]="form">
+      <h2>Basic Information</h2>
+      <div class="form-row">
+        <label>Email</label>
+        <input class="input" formControlName="email"/>
+      </div>
+      <div class="form-row">
+        <label>Name</label>
+        <input class="input" formControlName="name" />
+      </div>
+      <button class="sub-btn" (submit)="onClick()">Save</button>
+    </form>
+    <app-medical-card></app-medical-card>
+  </div>
+</div>

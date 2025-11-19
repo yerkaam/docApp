@@ -12,17 +12,21 @@ import {Router} from '@angular/router';
 export class DoctorService {
   private apiUrl = 'http://localhost:3000/api';
   doctor = signal<Doctor | null>(null);
+  doctors = signal<Doctor | null>(null);
 
   constructor(private http: HttpClient) {
-    if (localStorage.getItem('doctor')) {
-    }
+
   }
   router = inject(Router)
   getCities(): Observable<City[]> {
     return this.http.get<City[]>(`${this.apiUrl}/cities`);
   }
-  getAllDoctors(){
-    return this.http.get<Doctor[]>(`${this.apiUrl}/doctors`);
+  getDoctorById(doctorId: string){
+    return this.http.get<Doctor>(`${this.apiUrl}/doctors/${doctorId}`)
+  }
+
+  getAppointmentsByUserId(userId:string){
+    return
   }
   getDoctors(cityId?: string, specialty?: string): Observable<Doctor[]> {
     let params = new HttpParams();
@@ -30,7 +34,7 @@ export class DoctorService {
     if (specialty) params = params.set('specialty', specialty);
 
     console.log('🔍 Отправляю запрос с параметрами:', params.toString());
-    return this.http.get<Doctor[]>('http://localhost:3000/api/doctors', { params });
+    return this.http.get<Doctor[]>(`${this.apiUrl}/doctors`, { params });
   }
   toAppointment(id: string){
     return this.http.get<Doctor>(`${this.apiUrl}/doctors/${id}`).pipe(

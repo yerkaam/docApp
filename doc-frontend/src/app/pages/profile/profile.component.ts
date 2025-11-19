@@ -2,10 +2,11 @@ import {Component, effect, inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import {MedicalCardComponent} from '../../common-ui/medical-card/medical-card.component';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MedicalCardComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -18,7 +19,6 @@ export class ProfileComponent implements OnInit {
     name: ['', Validators.required]
   });
   constructor() {
-
     effect(() => {
       const profile = this.authService.me();
       if (!profile) return; // ждем пока не загрузится
@@ -31,13 +31,15 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
-    // важно вызвать getProfile(), чтобы загрузить данные с сервера
-    this.authService.getProfile().subscribe();
+    try {
+      this.authService.getProfile().subscribe();
+    }
+    catch (error) {
+      console.log('authorize');
+    }
   }
 
   onClick() {
-    this.authService.logout();
+
   }
 }

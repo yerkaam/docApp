@@ -1,20 +1,28 @@
+<script src="header-part.component.ts"></script>
 <link rel="stylesheet" href="../footer/footer.component.css">
 <div class="white">
 <div class="wrapper">
 <div class="header">
   <img class="logo" src="/assets/imgs/logo.png">
   <div class="header-info">
+    @if (doctors() === null){
     <a class="btn nav-btn" [routerLink]="'home'">Home</a>
-    <a class="btn nav-btn">Appointments</a>
+    <a class="btn nav-btn" [routerLink]="'my-appointments'">Appointments</a>
 
     @if(!authService.me()){
       <a class="btn nav-btn" [routerLink]="'login'">Sign in</a>
       <a class="btn nav-btn" [routerLink]="'register'">Sign up</a>
+      <a class="btn nav-btn" [routerLink]="'doctor-login'">Doctor Login</a>
     }
 
     @if(authService.me()){
       <a class="btn nav-btn" [routerLink]="'profile'">Profile</a>
       <button class="btn nav-btn" (click)="logout()">Logout</button>
+    }
+    }
+    @else {
+      <button class="btn nav-btn" (click)="logoutDoctor()">Logout</button>
+
     }
   </div>
 </div>

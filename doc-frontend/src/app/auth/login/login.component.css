@@ -9,11 +9,7 @@
 :host::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background-image: url("/assets/imgs/background.jpg");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.8; /* ← регулируй прозрачность */
+  opacity: 1; /* ← регулируй прозрачность */
   z-index: -1;
 }
 .login-form {
@@ -55,5 +51,4 @@ button{
   background-color: white;
   padding: 100px 30px;
   border-radius: 15px;
-  opacity: 0.9;
 }

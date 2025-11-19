@@ -26,7 +26,7 @@ export class LoginComponent {
   ngOnInit() {
     this.authService.checkAuth().subscribe({
       next: () => this.router.navigate(['/home']),
-      error: () => {} // если токен невалидный — остаёмся на странице логина
+      error: () => {}
     });
   }
 

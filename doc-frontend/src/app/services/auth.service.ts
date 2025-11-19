@@ -1,6 +1,6 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, tap} from 'rxjs';
+import {catchError, Observable, of, tap} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 import {Profile} from '../interfaces/profile.interface';
@@ -43,8 +43,12 @@ export class AuthService {
         tap(response => {
           console.log('Профиль с сервера:', response.user.name);
           this.me.set(response.user); // ✅ сохраняем именно user
-        })
+        }
+        )
       );
+  }
+  getProfileById(id: string){
+    return this.http.get<Profile>(`${this.apiUrl}/${id}`, { withCredentials: true });
   }
 
   updateProfile(name: string){

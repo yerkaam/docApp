@@ -1,0 +1,44 @@
+.schedule-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.doctor-dashboard{
+  width: 80%;
+  margin: 20px auto;
+  display: block;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.time-col {
+  background: #f0f0f0;
+  font-weight: bold;
+  width: 80px;
+}
+
+.slot {
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.free {
+  background: #d4ffd4;
+  color: #006400;
+}
+
+.free:hover {
+  background: #baffba;
+}
+
+.busy {
+  background: #ffb3b3;
+  color: #7a0000;
+  cursor: not-allowed;
+}

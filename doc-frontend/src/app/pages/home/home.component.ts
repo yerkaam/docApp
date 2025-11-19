@@ -27,20 +27,10 @@ export class HomeComponent {
   cities$ = this.doctorService.getCities();
   selectedCity = '';
   specialty = '';
-
   ngOnInit() {
-    this.authService.getProfile().subscribe(profile => {
-      console.log(profile);
-    })
+    this.authService.getProfile().subscribe()
   }
-  getAllDoctors() {
-  this.doctorService.getAllDoctors().subscribe({
-    next: data => { console.log(data); },
-  })
-  }
-
   searchDoctors() {
-
     console.log(this.cities$)
     this.doctorService
       .getDoctors(this.selectedCity, this.specialty)

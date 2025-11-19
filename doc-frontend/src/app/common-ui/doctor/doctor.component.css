@@ -21,7 +21,9 @@
   overflow: hidden;
   color: #ffc107;
 }
-
+h3{
+  font-size: 24px;
+}
 .rating-number {
   margin-left: 8px;
   font-size: 0.9rem;
@@ -34,6 +36,10 @@
   border-radius: 10px;
   border: none;
   background-color: white;
+}
+.doctor_img__info img{
+  width: 50px;
+  height: 50px;
 }
 .second-part__info{
   margin-top: 10px;

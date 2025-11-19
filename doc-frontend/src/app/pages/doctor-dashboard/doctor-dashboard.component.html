@@ -1,0 +1,45 @@
+<section class="doctor-dashboard">
+<div class="schedule-table">
+
+  <table>
+    <thead>
+    <tr>
+      <th>Time</th>
+      <th *ngFor="let day of days">
+        {{ formatDate(day) }}
+      </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let time of timeSlots">
+
+      <td class="time-col">{{ time }}</td>
+
+      <td *ngFor="let day of days">
+
+        @let dayStr = day.toISOString().split('T')[0];
+
+        <div
+          *ngIf="table[dayStr][time]"
+          class="slot busy"
+        >
+          Patient name is {{users?.name}}
+        </div>
+
+        <div
+          *ngIf="!table[dayStr][time]"
+          class="slot free"
+          (click)="selectSlot(day, time)"
+        >
+          Available
+        </div>
+
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+
+</div>
+</section>

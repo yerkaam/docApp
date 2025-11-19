@@ -1,0 +1,43 @@
+.profile{
+  width: 80%;
+  display: block;
+  margin: 20px auto;
+
+}
+.profile-information{
+  display: grid;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  grid-template-columns: 100px 35% 1fr;
+  grid-gap: 50px;
+  height: 1000px;
+}
+.profile-information img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid blue;
+}
+form{
+  display: block;
+
+}
+  input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0.5px solid #6b6b6b;
+    margin-bottom: 10px;
+  }
+
+.sub-btn{
+  width: 100%;
+  border: none;
+  padding: 5px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+

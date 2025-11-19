@@ -1,16 +1,18 @@
-<section class="verify-container">
-  <h2>Подтверждение Email</h2>
-@if(email()){
-  <p>На адрес <strong>{{ email() }}</strong> был отправлен код подтверждения.</p>
-  }
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="code" placeholder="Введите код" />
-    <button type="submit" [disabled]="form.invalid">Подтвердить</button>
-  </form>
-  @if(message()){
-    <p class="success" >{{ message() }}</p>
-  }
- @if(error()){
-   <p class="error">{{ error() }}</p>
- }
-</section>
+<div class="wrapper">
+  <section class="verify-container">
+    <h2>Verification of Email</h2>
+  @if(email()){
+    <p>To email <strong>{{ email() }}</strong> was sent code of verification</p>
+    }
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="code" placeholder="Введите код" />
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+    @if(message()){
+      <p class="success" >{{ message() }}</p>
+    }
+   @if(error()){
+     <p class="error">{{ error() }}</p>
+   }
+  </section>
+</div>

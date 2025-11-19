@@ -1,0 +1,57 @@
+.appointments-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+  width: 80%;
+  margin: auto;
+}
+
+.appointment-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: all 0.2s ease;
+}
+
+.appointment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.appointment-header {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+}
+
+.appointment-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.specialty {
+  font-size: 13px;
+  color: #777;
+}
+
+.appointment-info p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.appointment-footer {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.payment {
+  color: #4CAF50;
+  font-weight: 500;
+}
