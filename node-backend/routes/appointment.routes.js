@@ -7,9 +7,7 @@ const router = express.Router();
 
 router.post('/', createAppointment);
 
-// simulate payment -> create appointment after "payment"
 
-// get appointments (with doctor/date filter)
 router.get('/', getAppointments);
 router.get('/user/:userId', getAppointmentByUserId);
 router.get("/doctor/:doctorId", async (req, res) => {

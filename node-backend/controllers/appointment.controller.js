@@ -1,6 +1,5 @@
 import Appointment from "../models/appointment.model.js";
 
-// ✅ Создание нового appointment (с проверкой занятости)
 export const createAppointment = async (req, res) => {
     try {
         const { date, time, userId, doctorId } = req.body;
@@ -9,7 +8,6 @@ export const createAppointment = async (req, res) => {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        // Проверяем занятость слота у конкретного доктора
         const existing = await Appointment.findOne({ date, time, doctor: doctorId });
         if (existing) {
             return res.status(409).json({ message: "This slot is already booked for this doctor" });
@@ -25,18 +23,14 @@ export const createAppointment = async (req, res) => {
     }
 };
 
-// ✅ Получение всех appointment (например, чтобы скрывать занятые слоты)
-
-
-// Получение appointment с фильтром по доктору и дате
 export const getAppointmentByUserId = async (req, res) => {
     try {
-        const { userId } = req.params; // ✅ берем из params
+        const { userId } = req.params;
         const appointments = await Appointment.find({ userId });
 
         console.log('Appointments for user:', userId, appointments);
 
-        res.status(200).json(appointments); // ✅ обязательно вернуть клиенту
+        res.status(200).json(appointments);
     } catch (error) {
         console.error("Ошибка при получении записей:", error);
         res.status(500).json({ message: "Error fetching appointments" });
@@ -56,7 +50,6 @@ export const getAppointments = async (req, res) => {
         const endOfDay = new Date(date);
         endOfDay.setHours(23, 59, 59, 999);
 
-        // Ищем все записи конкретного доктора в пределах этого дня
         const appointments = await Appointment.find({
             doctorId: doctor,
             date: { $gte: startOfDay, $lte: endOfDay }
