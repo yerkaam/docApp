@@ -27,8 +27,8 @@ export class AppointmentComponent {
   getFillPercent(index: number): string {
     const rating = this.doctor()!.rating;
     const diff = rating - index
-    if (diff >= 1) return '100%';       // полная звезда
-    if (diff > 0 && diff < 1) return `${diff * 100}%`; // частично заполненная
-    return '0%';                        // пустая
+    if (diff >= 1) return '100%'; 
+    if (diff > 0 && diff < 1) return `${diff * 100}%`;
+    return '0%';
   }
 }
