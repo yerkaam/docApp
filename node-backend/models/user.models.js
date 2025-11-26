@@ -5,10 +5,10 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isVerified: { type: Boolean, default: false },
-    verificationCode: { type: String }, // 6-значный код
+    verificationCode: { type: String },
     verificationExpires: { type: Date },
     resetCode: { type: String },
-    resetExpires: { type: Date },// срок действия кода
+    resetExpires: { type: Date },
 }, { timestamps: true });
 
 export default mongoose.model("User", userSchema);

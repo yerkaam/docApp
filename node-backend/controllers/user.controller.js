@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
 }, { timestamps: true });
 
-// 🧂 Хешируем пароль перед сохранением
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
     const salt = await bcrypt.genSalt(10);
@@ -15,7 +14,6 @@ userSchema.pre("save", async function (next) {
     next();
 });
 
-// 🔑 Метод для проверки пароля
 userSchema.methods.comparePassword = async function (candidatePassword) {
     return await bcrypt.compare(candidatePassword, this.password);
 };
