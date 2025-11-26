@@ -20,17 +20,14 @@ export class DoctorDashboardComponent {
   users: Profile | undefined
   appointments: Appointment[] = [];
 
-  // Таблица: dayString → (time → appointment)
   table: Record<string, Record<string, Appointment | null>> = {};
 
-  // Временные слоты
   timeSlots: string[] = [
     '09:00','09:30','10:00','10:30','11:00','11:30',
     '12:00','12:30','13:00','14:00','14:30','15:00',
     '15:30','16:00','16:30','17:00'
   ];
 
-  // 7 дней
   days: Date[] = [];
 
   ngOnInit() {
@@ -54,7 +51,6 @@ export class DoctorDashboardComponent {
     });
   }
 
-  // Генерация 7 дней
   generateDays() {
     const today = new Date();
     this.days = Array.from({ length: 7 }, (_, i) => {
@@ -64,7 +60,6 @@ export class DoctorDashboardComponent {
     });
   }
 
-  // Формат: Wed 20
   formatDate(date: Date): string {
     return date.toLocaleDateString('en-US', {
       weekday: 'short',
@@ -72,11 +67,10 @@ export class DoctorDashboardComponent {
     });
   }
 
-  // Таблица слотов: день × время
   buildTable() {
     this.table = {};
     for (const day of this.days) {
-      const dayStr = day.toISOString().split("T")[0]; // YYYY-MM-DD
+      const dayStr = day.toISOString().split("T")[0];
 
       this.table[dayStr] = {};
 
@@ -86,7 +80,7 @@ export class DoctorDashboardComponent {
     }
 
     for (const app of this.appointments) {
-      const dayStr = app.date.split("T")[0]; // "2025-11-18"
+      const dayStr = app.date.split("T")[0];
       const time = app.time;
 
       this.authService.getProfileById(app.userId).subscribe(profile =>{
