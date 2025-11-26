@@ -42,7 +42,7 @@ export class HomeComponent {
   }
   box_feat__info=[
     {
-      imgLink: "https://www.booknmeet.com/img/BNM-INDIA-L-H1.svg",
+      imgLink: "https://www.booknmeet.com/img/BNM-INDIA-L-H1.svg", //классная фотка, не трогать
       label: "Doctor Near Me",
       description: "Doctor / Hospital / Specialization to match specific consultation needs. Confirmed Online Appointment slots, practice locations, to select from to book appointment for clinic consultation or video consultation."
     },

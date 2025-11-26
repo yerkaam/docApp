@@ -24,7 +24,7 @@ export class MyAppointmentsComponent {
   userId = '';
 
   appointments = signal<Appointment[]>([]);
-  doctors = signal<Doctor[]>([]); // массив всех докторов
+  doctors = signal<Doctor[]>([]);
 
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
