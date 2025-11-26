@@ -17,11 +17,10 @@ router.post("/reset-password", resetPassword);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/verify", verifyEmail);
-// защищённый маршрут
 router.get("/profile", authMiddleware, getProfile);
 router.get("/:id", async (req, res) => {
     try {
-        const user = await UserModels.findById(req.params.id).select("-password"); // не отдаём пароль
+        const user = await UserModels.findById(req.params.id).select("-password");
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }

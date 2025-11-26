@@ -10,10 +10,7 @@ import appointmentRoutes from "./routes/appointment.routes.js";
 import medicalCardRoutes from "./routes/medicalCard.routes.js";
 import doctorLoginRoutes from "./routes/doctor-login.routes.js";
 import feedbackRoutes from "./routes/feedback.routes.js";
-
-
 dotenv.config();
-
 console.log("✅ EMAIL_USER:", process.env.EMAIL_USER);
 console.log("✅ EMAIL_PASS:", process.env.EMAIL_PASS ? "Загружен" : "❌ НЕ загружен");
 const app = express();
@@ -22,11 +19,10 @@ const PORT = 3000;
 app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:4200',
-    credentials: true // 👈 разрешаем куки
+    credentials: true
 }));
 app.use(cookieParser());
 
-// ✅ подключаем маршруты
 app.use("/api/users", userRoutes);
 app.use("/api/cities", cityRoutes);
 app.use("/api/doctors", doctorRoutes);
