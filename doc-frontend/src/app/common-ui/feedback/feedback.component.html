@@ -1,0 +1,7 @@
+@if(me()){
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input formControlName="feedback">
+  <button >Send</button>
+</form>
+}
+{{feedback() | json}}

@@ -11,9 +11,8 @@ const transporter = nodemailer.createTransport({
 });
 
 /**
- * Отправка email с подтверждением
- * @param {string} to - адрес получателя
- * @param {string} code - код подтверждения
+ * @param {string} to
+ * @param {string} code
  */
 export const sendVerificationEmail = async (to, code) => {
     try {

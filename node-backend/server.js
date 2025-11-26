@@ -9,6 +9,7 @@ import doctorRoutes from "./routes/doctor.routes.js";
 import appointmentRoutes from "./routes/appointment.routes.js";
 import medicalCardRoutes from "./routes/medicalCard.routes.js";
 import doctorLoginRoutes from "./routes/doctor-login.routes.js";
+import feedbackRoutes from "./routes/feedback.routes.js";
 
 
 dotenv.config();
@@ -31,6 +32,7 @@ app.use("/api/cities", cityRoutes);
 app.use("/api/doctors", doctorRoutes);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/medical-card", medicalCardRoutes);
+app.use("/api/feedback", feedbackRoutes);
 app.use("/api", doctorLoginRoutes);
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('✅ MongoDB connected successfully'))

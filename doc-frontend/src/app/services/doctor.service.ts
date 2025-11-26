@@ -5,6 +5,7 @@ import {City} from '../interfaces/city.interface';
 import {Doctor} from '../interfaces/doctor.interface';
 import {routes} from '../app.routes';
 import {Router} from '@angular/router';
+import {Feedback} from '../interfaces/feedback.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,12 @@ export class DoctorService {
   }
   getDoctorById(doctorId: string){
     return this.http.get<Doctor>(`${this.apiUrl}/doctors/${doctorId}`)
+  }
+  getFeedback(doctorId: string){
+    return this.http.get<Feedback[]>(`${this.apiUrl}/feedback/${doctorId}`)
+  }
+  postFeedback(userId: string, doctorId: string, feedback: string){
+    return this.http.post<Feedback>(`${this.apiUrl}/feedback`, {doctorId, userId,feedback} );
   }
 
   getAppointmentsByUserId(userId:string){

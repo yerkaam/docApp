@@ -2,12 +2,14 @@ import {Component, inject} from '@angular/core';
 import {DoctorService} from '../../services/doctor.service';
 import {NgForOf} from '@angular/common';
 import {AppointmentTimeComponent} from '../../common-ui/appointment-time/appointment-time.component';
+import {FeedbackComponent} from '../../common-ui/feedback/feedback.component';
 
 @Component({
   selector: 'app-appointment',
   imports: [
     NgForOf,
-    AppointmentTimeComponent
+    AppointmentTimeComponent,
+    FeedbackComponent
   ],
   templateUrl: './appointment.component.html',
   styleUrl: './appointment.component.css'
