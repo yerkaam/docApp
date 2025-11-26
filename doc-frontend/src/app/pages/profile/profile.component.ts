@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   constructor() {
     effect(() => {
       const profile = this.authService.me();
-      if (!profile) return; // ждем пока не загрузится
+      if (!profile) return;
       console.log(profile.email);
       this.form.patchValue({
         name: profile.name,
