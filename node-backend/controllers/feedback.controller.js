@@ -1,5 +1,4 @@
 import FeedbackModel from "../models/feedback.model.js";
-import Appointment from "../models/appointment.model.js";
 
 export const getFeedback = async (req, res) => {
     try {
