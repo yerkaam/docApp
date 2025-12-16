@@ -1,7 +1,44 @@
-@if(me()){
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <input formControlName="feedback">
-  <button >Send</button>
-</form>
+
+<script src="feedback.component.ts"></script>
+<div class="wrapper">
+  <h2>Feedback</h2>
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="me()">
+    <img [src]="img" alt="Avatar">
+
+    <input formControlName="feedback" placeholder="Write your comment..." />
+    <div class="stars">
+  <span
+    *ngFor="let star of [5,4,3,2,1]"
+    (click)="setRating(star)"
+    [class.active]="star <= rating()">
+    &#9733;
+  </span>
+    </div>
+
+    <button type="submit" [disabled]="rating() === 0 || form.get('feedback')?.invalid">
+      Send
+    </button>
+  </form>
+
+@if(feedback().length > 0){
+<div class="feedbacks">
+  @for (merged of merged(); track merged){
+    <div class="feedback">
+      <div class="flex">
+      <img [src]="img">
+      <div>
+        <p>{{merged.user.name}}  <span>{{getCreatedTime(merged.feedback.createdAt)}}</span></p>
+        <span>{{merged.feedback.feedback}}</span>
+      </div>
+      </div>
+      <div class="starss">
+        <ng-container *ngFor="let star of starsArray; let i = index">
+          <span class="star2" [style.--fill]="getFillPercent(i, merged.feedback.rating)">★</span>
+        </ng-container>
+        <span class="rating-number">{{ merged.feedback.rating }}</span>
+      </div>
+    </div>
+  }
+</div>
 }
-{{feedback() | json}}
+</div>

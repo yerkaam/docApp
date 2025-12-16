@@ -1,5 +1,5 @@
 import express from "express";
-import { getDoctors } from "../controllers/doctor.controller.js";
+import {getDoctors, updateRating} from "../controllers/doctor.controller.js";
 import Doctor from "../models/doctor.model.js"; // ✅ добавили импорт
 
 const router = express.Router();
@@ -17,5 +17,6 @@ router.get("/:id", async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+router.patch("/:id", updateRating);
 
 export default router;

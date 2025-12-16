@@ -1,26 +1,31 @@
-import { Component, inject } from '@angular/core';
-import {NgForOf, NgIf} from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { NgForOf, NgIf } from '@angular/common';
 import { DoctorService } from '../../services/doctor.service';
-import { Appointment } from '../../interfaces/appointment.interface';
 import { AppointmentService } from '../../services/appointment.service';
-import {AuthService} from '../../services/auth.service';
-import {Profile} from '../../interfaces/profile.interface';
+import { AuthService } from '../../services/auth.service';
+import { Appointment } from '../../interfaces/appointment.interface';
+import { Profile } from '../../interfaces/profile.interface';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-doctor-dashboard',
-  imports: [NgForOf, NgIf],
   templateUrl: './doctor-dashboard.component.html',
-  styleUrl: './doctor-dashboard.component.css'
+  styleUrls: ['./doctor-dashboard.component.css'],
+  imports: [NgForOf, NgIf]
 })
-export class DoctorDashboardComponent {
+export class DoctorDashboardComponent implements OnInit {
   doctorService = inject(DoctorService);
   appointmentService = inject(AppointmentService);
   authService = inject(AuthService);
+
   doctor = this.doctorService.doctors;
-  users: Profile | undefined
   appointments: Appointment[] = [];
 
-  table: Record<string, Record<string, Appointment | null>> = {};
+  // Словарь профилей: userId -> Profile
+  profilesMap: Record<string, Profile> = {};
+
+  // Таблица: день -> время -> Appointment + userProfile
+  table: Record<string, Record<string, { appointment: Appointment, userProfile: Profile } | null>> = {};
 
   timeSlots: string[] = [
     '09:00','09:30','10:00','10:30','11:00','11:30',
@@ -33,22 +38,6 @@ export class DoctorDashboardComponent {
   ngOnInit() {
     this.generateDays();
     this.loadAppointments();
-  }
-
-  loadAppointments() {
-    const doctorId = this.doctor()?._id;
-
-    if (!doctorId) {
-      console.error("❌ doctorId not found");
-      return;
-    }
-
-    this.appointmentService.getAppointmentsByDoctor(doctorId).subscribe(app => {
-      this.appointments = app;
-      console.log("Appointments:", this.appointments);
-
-      this.buildTable();
-    });
   }
 
   generateDays() {
@@ -67,37 +56,65 @@ export class DoctorDashboardComponent {
     });
   }
 
-  buildTable() {
+  loadAppointments() {
+    const doctorId = this.doctor()?._id;
+
+    if (!doctorId) {
+      console.error("❌ doctorId not found");
+      return;
+    }
+
+    this.appointmentService.getAppointmentsByDoctor(doctorId).subscribe(apps => {
+      this.appointments = apps;
+      this.buildTableWithProfiles();
+    });
+  }
+
+  buildTableWithProfiles() {
+    // Создаем пустую таблицу
     this.table = {};
     for (const day of this.days) {
       const dayStr = day.toISOString().split("T")[0];
-
       this.table[dayStr] = {};
-
       for (const time of this.timeSlots) {
         this.table[dayStr][time] = null;
       }
     }
 
-    for (const app of this.appointments) {
-      const dayStr = app.date.split("T")[0];
-      const time = app.time;
+    // Получаем уникальные userId из appointments
+    const uniqueUserIds = Array.from(new Set(this.appointments.map(a => a.userId)));
 
-      this.authService.getProfileById(app.userId).subscribe(profile =>{
-        this.users = profile
-      })
-      if (this.table[dayStr] && this.table[dayStr][time] !== undefined) {
-        this.table[dayStr][time] = app;
+    // Загружаем все профили одновременно
+    const profileObservables = uniqueUserIds.map(id => this.authService.getProfileById(id));
+
+    forkJoin(profileObservables).subscribe(profiles => {
+      profiles.forEach(profile => {
+        this.profilesMap[profile._id] = profile;
+      });
+
+      // Заполняем таблицу
+      for (const app of this.appointments) {
+        const dayStr = app.date.split("T")[0];
+        const time = app.time;
+        const userProfile = this.profilesMap[app.userId];
+
+        if (this.table[dayStr] && this.table[dayStr][time] !== undefined) {
+          this.table[dayStr][time] = { appointment: app, userProfile };
+        }
       }
-    }
 
-    console.log("Table:", this.table);
+      console.log("Table with profiles:", this.table);
+    });
   }
 
   selectSlot(day: Date, time: string) {
-    console.log('Selected:', {
-      date: day.toISOString().split('T')[0],
-      time: time
-    });
+    const dayStr = day.toISOString().split('T')[0];
+    const cell = this.table[dayStr][time];
+    if (cell) {
+      console.log("Selected appointment:", cell.appointment);
+      console.log("User profile:", cell.userProfile);
+    } else {
+      console.log('Selected empty slot:', { date: dayStr, time });
+    }
   }
 }

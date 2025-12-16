@@ -1,5 +1,4 @@
 import FeedbackModel from "../models/feedback.model.js";
-
 export const getFeedback = async (req, res) => {
     try {
         const { doctorId } = req.query;
@@ -19,13 +18,13 @@ export const getFeedback = async (req, res) => {
 };
 export const createFeedback = async (req, res) => {
     try {
-        const { userId, doctorId, feedback } = req.body;
+        const { userId, doctorId, feedback, rating } = req.body;
 
-        if (!feedback || !userId || !doctorId) {
+        if (!feedback || !userId || !doctorId || !rating) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        const feedbackPost = new FeedbackModel({ feedback: feedback, userId: userId, doctorId: doctorId });
+        const feedbackPost = new FeedbackModel({ feedback: feedback, userId: userId, doctorId: doctorId, rating: rating });
         await feedbackPost.save();
 
         res.status(201).json(feedbackPost);

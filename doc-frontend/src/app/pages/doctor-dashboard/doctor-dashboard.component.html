@@ -1,45 +1,43 @@
 <section class="doctor-dashboard">
-<div class="schedule-table">
+  <div class="schedule-table">
+    <table>
+      <thead>
+      <tr>
+        <th>Time</th>
+        <th *ngFor="let day of days">
+          {{ formatDate(day) }}
+        </th>
+      </tr>
+      </thead>
 
-  <table>
-    <thead>
-    <tr>
-      <th>Time</th>
-      <th *ngFor="let day of days">
-        {{ formatDate(day) }}
-      </th>
-    </tr>
-    </thead>
+      <tbody>
+      <tr *ngFor="let time of timeSlots">
+        <td class="time-col">{{ time }}</td>
 
-    <tbody>
-    <tr *ngFor="let time of timeSlots">
+        <td *ngFor="let day of days">
+          <!-- Получаем день в формате 'YYYY-MM-DD' -->
+          <ng-container *ngIf="table[day.toISOString().split('T')[0]][time] as cell">
 
-      <td class="time-col">{{ time }}</td>
+            <!-- Если ячейка занята -->
+            <div class="slot busy">
+              Patient name: {{ cell.userProfile.name }}
+            </div>
 
-      <td *ngFor="let day of days">
+          </ng-container>
 
-        @let dayStr = day.toISOString().split('T')[0];
+          <!-- Если ячейка свободна -->
+          <ng-container *ngIf="!table[day.toISOString().split('T')[0]][time]">
+            <div
+              class="slot free"
+              (click)="selectSlot(day, time)"
+            >
+              Available
+            </div>
+          </ng-container>
 
-        <div
-          *ngIf="table[dayStr][time]"
-          class="slot busy"
-        >
-          Patient name is {{users?.name}}
-        </div>
-
-        <div
-          *ngIf="!table[dayStr][time]"
-          class="slot free"
-          (click)="selectSlot(day, time)"
-        >
-          Available
-        </div>
-
-      </td>
-    </tr>
-    </tbody>
-
-  </table>
-
-</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </section>

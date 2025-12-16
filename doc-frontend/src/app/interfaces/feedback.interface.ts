@@ -3,5 +3,6 @@ export interface Feedback {
   feedback: string;// MongoDB ObjectId
   userId: string;       // ID пользователя
   doctorId: string;     // ID доктора
-  createdAt: string;      // дата создания записи
+  createdAt: string;
+  rating: number;// дата создания записи
 }

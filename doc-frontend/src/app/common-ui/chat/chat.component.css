@@ -1,0 +1,104 @@
+/* Контейнер всего чата */
+.chat-wrapper {
+  width: 600px;
+  max-width: 90%;
+  height: 700px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: #f7f7f7;
+}
+
+/* Область сообщений */
+.chat-box {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  background-color: #eaeaea;
+}
+
+/* Сообщение */
+.msg {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Пузырёк с текстом */
+.bubble {
+  padding: 12px 16px;
+  border-radius: 20px;
+  max-width: 70%;
+  word-wrap: break-word;
+  line-height: 1.4;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Сообщения пользователя (справа) */
+.msg.user {
+  align-self: flex-end;
+}
+
+.msg.user .bubble {
+  background-color: #007bff;
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+/* Сообщения AI (слева) */
+.msg.ai {
+  align-self: flex-start;
+}
+
+.msg.ai .bubble {
+  background-color: #ffffff;
+  color: #333;
+  border-bottom-left-radius: 0;
+}
+
+/* Поле ввода и кнопка */
+.input-box {
+  display: flex;
+  border-top: 1px solid #ccc;
+  background-color: #fafafa;
+}
+
+.input-box input {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+.input-box button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.2s;
+}
+
+.input-box button:hover {
+  background-color: #0056b3;
+}
+
+/* Скроллбар для сообщений */
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}

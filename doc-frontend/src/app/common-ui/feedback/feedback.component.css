@@ -1,0 +1,130 @@
+.wrapper{
+  background-color: white;
+  padding: 20px;
+  width: 103%;
+  margin: 20px 0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.feedback{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border: 0.5px solid lightgray;
+  padding: 10px;
+  border-radius: 10px;
+  justify-content: space-between;
+
+}
+.feedback p{
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  align-items: center;
+  gap: 5px;
+}
+.feedback span{
+  font-size: 14px;
+  font-weight: 400;
+}
+.feedbacks{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.form input{
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+.form button{
+  padding: 10px 20px;
+  border-radius:10px;
+  border: none;
+  background-color: #5050d7;
+  color: white;
+}
+.form img{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.stars {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  flex-direction: row-reverse;
+  justify-content: start;
+}
+
+.stars span {
+  color: gray; /* все звезды серые */
+}
+
+.stars span:hover,
+.stars span:hover ~ span {
+  color: darkorange;
+}
+.stars span:focus{
+  color: darkorange;
+}
+.stars {
+  display: flex;
+  gap: 5px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.stars span {
+  color: #ccc; /* неактивные звёзды серые */
+  transition: color 0.2s;
+}
+.stars span.active {
+  color: darkorange; /* активные звёзды жёлтые */
+}
+.starss {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.star2 {
+  --fill: 0%;
+  display: inline-block;
+  position: relative;
+  color: #ccc;
+  width: 1.2em;
+}
+
+.star2::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--fill);
+  overflow: hidden;
+  color: #ffc107;
+}
+.flex{
+  display: flex;
+  gap:20px;
+  align-items: center;
+}
+
+

@@ -1,0 +1,14 @@
+<div class="chat-wrapper">
+  <div class="chat-box">
+    @for (msg of messages(); track msg) {
+      <div class="msg" [ngClass]="msg.from">
+        <div class="bubble">{{ msg.text }}</div>
+      </div>
+    }
+  </div>
+
+  <form class="input-box" (ngSubmit)="sendMessage()">
+    <input [(ngModel)]="inputValue" name="msg" placeholder="Напишите сообщение..." />
+    <button type="submit">➤</button>
+  </form>
+</div>

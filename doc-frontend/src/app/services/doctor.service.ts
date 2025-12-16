@@ -28,8 +28,11 @@ export class DoctorService {
   getFeedback(doctorId: string){
     return this.http.get<Feedback[]>(`${this.apiUrl}/feedback/${doctorId}`)
   }
-  postFeedback(userId: string, doctorId: string, feedback: string){
-    return this.http.post<Feedback>(`${this.apiUrl}/feedback`, {doctorId, userId,feedback} );
+  patchRating(doctorId: string, rating: number){
+    return this.http.patch<Doctor>(`${this.apiUrl}/doctors/${doctorId}`, {rating})
+  }
+  postFeedback(userId: string, doctorId: string, feedback: string, rating: number){
+    return this.http.post<Feedback>(`${this.apiUrl}/feedback`, {doctorId, userId,feedback, rating} );
   }
 
   getAppointmentsByUserId(userId:string){

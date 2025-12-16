@@ -3,13 +3,15 @@ import {DoctorService} from '../../services/doctor.service';
 import {NgForOf} from '@angular/common';
 import {AppointmentTimeComponent} from '../../common-ui/appointment-time/appointment-time.component';
 import {FeedbackComponent} from '../../common-ui/feedback/feedback.component';
+import {ChatComponent} from '../../common-ui/chat/chat.component';
 
 @Component({
   selector: 'app-appointment',
   imports: [
     NgForOf,
     AppointmentTimeComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    ChatComponent
   ],
   templateUrl: './appointment.component.html',
   styleUrl: './appointment.component.css'
@@ -27,7 +29,7 @@ export class AppointmentComponent {
   getFillPercent(index: number): string {
     const rating = this.doctor()!.rating;
     const diff = rating - index
-    if (diff >= 1) return '100%'; 
+    if (diff >= 1) return '100%';
     if (diff > 0 && diff < 1) return `${diff * 100}%`;
     return '0%';
   }

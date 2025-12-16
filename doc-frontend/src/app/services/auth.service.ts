@@ -50,7 +50,6 @@ export class AuthService {
   getProfileById(id: string){
     return this.http.get<Profile>(`${this.apiUrl}/${id}`, { withCredentials: true });
   }
-
   updateProfile(name: string){
    return this.http.patch<Partial<Profile>>(`http://localhost:3000/api/users/profile`,name )
   }
