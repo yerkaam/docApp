@@ -26,6 +26,7 @@ export class DoctorComponent {
   }
   getFillPercent(index: number): string {
     const rating = this.doctor.rating;
+    this.doctor.rating = Math.floor(rating * 10) / 10
     const diff = rating - index;
     if (diff >= 1) return '100%';       // полная звезда
     if (diff > 0 && diff < 1) return `${diff * 100}%`; // частично заполненная

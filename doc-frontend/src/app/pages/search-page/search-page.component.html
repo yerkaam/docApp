@@ -3,7 +3,7 @@
   <div>
     <div class="search-query">
       <select [(ngModel)]="selectedCity">
-        <option value="">Выберите город</option>
+        <option value="">Select city</option>
         @for (city of cities$ | async; track city._id) {
           <option [value]="city._id">{{ city.name }}</option>
         }
@@ -11,9 +11,9 @@
       <input
         type="text"
         [(ngModel)]="specialty"
-        placeholder="Введите специализацию"
+        placeholder="Enter specialization"
       />
-      <button (click)="searchDoctors()">Найти</button>
+      <button (click)="searchDoctors()">Find</button>
     </div>
     <div class="doctors">
     @for (doctor of doctors(); track doctor._id){

@@ -28,6 +28,7 @@ export class AppointmentComponent {
   starsArray = Array(5).fill(0);
   getFillPercent(index: number): string {
     const rating = this.doctor()!.rating;
+    this.doctor()!.rating = Math.floor(rating * 10) / 10;
     const diff = rating - index
     if (diff >= 1) return '100%';
     if (diff > 0 && diff < 1) return `${diff * 100}%`;
